@@ -6,17 +6,23 @@ Note App -
 {% endblock %}
 
 {% block content %}
-<div class="w-50 card mx-auto" style="margin-top: 150px;">
-    <div class="card-header">
-        Hello Lawdya
+<div class="w-50 card mx-auto" style="margin-top: 100px;">
+    <div class="card-header" style="height: 130px;">
+        <a href="#" class="btn" style="float: right;">Logout</a>
+        <p class="pt-4" style="font-size: x-large;">Hello {{request.user}}</p>
+        <p>You have {{incomeplete}} incomplete tasks</p>
     </div>
     <div class="card-body">
-        Hey
-
-
-        hey
-
-        hey
+        {% for task in tasks %}
+        <section>
+            <input type="checkbox" style="float: left; margin-top: 20px;" , {% if task.complete %} checked {% endif %}>
+            <a href="{% url 'update' task.id %}" style="text-decoration: none; color: black;">
+                <h5 class="ps-4">{{task.title}}</h5>
+            </a>
+            <small style="padding-left: 20px;">{{task.content}}</small>
+        </section>
+        <hr>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
