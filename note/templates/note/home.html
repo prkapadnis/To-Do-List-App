@@ -13,15 +13,45 @@ Note App -
         <p>You have {{incomeplete}} incomplete tasks</p>
     </div>
     <div class="card-body">
+        <div style="height: 50px;">
+            <span style="float: right;">
+                <a href="{% url 'create' %}" style="text-decoration: none; color: black;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z" />
+                    </svg>
+                </a>
+            </span>
+        </div>
+        <hr>
         {% for task in tasks %}
         <section>
             <input type="checkbox" style="float: left; margin-top: 20px;" , {% if task.complete %} checked {% endif %}>
+            <a href="{% url 'delete' task.id %}"
+                style=" float:right; text-decoration: none; font-size: x-large; margin-bottom: 20px; color: black ;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </a>
+            {% if task.complete %}
+            <strike>
+                <a href="{% url 'update' task.id %}" style="text-decoration: none; color: black;">
+                    <h5 class="ps-4">{{task.title}}</h5>
+                </a>
+            </strike>
+            {% else %}
             <a href="{% url 'update' task.id %}" style="text-decoration: none; color: black;">
                 <h5 class="ps-4">{{task.title}}</h5>
             </a>
+            {% endif %}
             <small style="padding-left: 20px;">{{task.content}}</small>
         </section>
         <hr>
+        {% empty %}
+        <p>You have No Task ...</p>
         {% endfor %}
     </div>
 </div>
