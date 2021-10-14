@@ -8,7 +8,7 @@ Note App -
 {% block content %}
 <div class="w-50 card mx-auto" style="margin-top: 100px;">
     <div class="card-header" style="height: 130px;">
-        <a href="#" class="btn" style="float: right;">Logout</a>
+        <a href="{% url 'logout' %}" class="btn" style="float: right;">Logout</a>
         <p class="pt-4" style="font-size: x-large;">Hello {{request.user}}</p>
         <p>You have {{incomeplete}} incomplete tasks</p>
     </div>

@@ -1,0 +1,38 @@
+{% extends 'note/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Note App - Login
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-danger w-50 mx-auto" , role="alert">
+    {{message}}
+</div>
+{% endfor %}
+{% endif %}
+<div class="card w-50 mx-auto" style="margin-top: 150px;">
+    <div class="card-header">
+        <header>Login</header>
+    </div>
+    <div class="card-body">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-2">
+                {{form.username | as_crispy_field}}
+            </div>
+            <div class="mb-2">
+                {{form.password | as_crispy_field}}
+            </div>
+            <div class="mb-2">
+                <input type="submit" class="btn btn-success" value="Login">
+            </div>
+        </form>
+        <hr>
+        <p>Don't have account, <a href="{% url 'register' %}" style="text-decoration: None;"> <strong>Register
+                    here</strong></a></p>
+    </div>
+</div>
+{% endblock %}
