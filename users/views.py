@@ -33,7 +33,7 @@ def register_view(request):
             form.save()
             messages.success(
                 request, f'Successfully registered with the {form.instance.username} username')
-            return redirect('/login')
+            return redirect('/')
     else:
         form = UserRegistration()
     context = {'form': form}
@@ -42,4 +42,4 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('/login')
+    return redirect('/')
